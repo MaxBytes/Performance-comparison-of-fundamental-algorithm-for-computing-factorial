@@ -119,7 +119,7 @@ mpz_class Factorial5(unsigned int n)
 		end = (end & 1) ? end : end - 1; // end must be odd number
 		y *= mul_odd(end, start);
 		// y now holds 1 * 3 * 5 * ... * [n / 2^(k - 2)]
-		x *= y; // x will be ƒ®_[ q = 1 to [log_2(n) - 1] ] ( ƒ®_[ p = 1 to [n / 2^(l - q - 1)] ] (2*p - 1) )
+		x *= y; // x will be Æ’Â®_[ q = 1 to [log_2(n) - 1] ] ( Æ’Â®_[ p = 1 to [n / 2^(l - q - 1)] ] (2*p - 1) )
 		start = end + 2; // update lower bound
 	}
 	return x << total_count_of_even;
@@ -140,6 +140,7 @@ Each algorithm was tested 10 times and average is calculated.
 
 Fig.1  Average running time of Algorithm1,Algorithm2,Algorithm3 and Algorithm4 (lower is better)
 ![result](result_alg1-5_0-50000.png)
+
 Algorithm1 is worst, but obvious and easy to implement.
 Algorithm2 might be acceptable when running time is not concern and n is less than 10000.
 Algorithm3 is faster than algorithm2 and might be acceptable if n is less than 13000-15000.
@@ -160,7 +161,7 @@ Fig.5 time ratio of Algorithm5 to mpz_fac_ui
 ![ratio_alg5](ratio_alg5.png)
 
 ## Conclusion
-If you are working with time critical issue, then any of Algorithm1,2,3,4 and Algorithm5.
+If you are working with time critical issue, then any of Algorithm1,2,3,4 and Algorithm5 should be avoided.
 You shold use more faster algorithm instead.
 If you don't need fast algorithm, choose Algorithm4 or Algorithm5.
 All of Algorithm1,2,3,4, and Algorithm5 might be ok if n is less than 10000.
@@ -171,26 +172,17 @@ All of Algorithm1,2,3,4, and Algorithm5 might be ok if n is less than 10000.
 
 ## Appendix
 
-**_Table.1 N and time to calculate N!_**
+**_Table.1 N and time to calculate N! (smaller is better)_**
 
-N | Algorithm1 | Algorithm2 | Algorithm3 | Algorithm4 | Algorithm5 |
-____________________________________________________________________
-10000 | 14 | 10 | 5 | 2 | 1 |
-____________________________________________________________________
-15000 | 35 | 21 | 12 | 4 | 2 |
-____________________________________________________________________
-25000 | 102 | 60 | 36 | 7 | 4 |
-____________________________________________________________________
-29000 | 141 | 82 | 48 | 10 | 6 |
-____________________________________________________________________
-32000 | 170 | 99 | 59 | 12 | 7 |
-____________________________________________________________________
-41000 | 290 | 164 | 99 | 15 | 10 |
-____________________________________________________________________
-180000 | N/A | N/A | N/A | 97 | 66 |
-____________________________________________________________________
-240000 | N/A | N/A | N/A | 148 | 97 |
-____________________________________________________________________
-250000 | N/A | N/A | N/A | 160 | 104 |
-____________________________________________________________________
+N | Algorithm1 | Algorithm2 | Algorithm3 | Algorithm4 | Algorithm5 
+--|------------|------------|------------|------------|------------
+10000 | 14 | 10 | 5 | 2 | 1
+15000 | 35 | 21 | 12 | 4 | 2
+25000 | 102 | 60 | 36 | 7 | 4
+29000 | 141 | 82 | 48 | 10 | 6
+32000 | 170 | 99 | 59 | 12 | 7
+41000 | 290 | 164 | 99 | 15 | 10
+180000 | N/A | N/A | N/A | 97 | 66
+240000 | N/A | N/A | N/A | 148 | 97
+250000 | N/A | N/A | N/A | 160 | 104
 
